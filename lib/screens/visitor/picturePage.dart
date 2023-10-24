@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:eazy_gate_lite/screens/home.dart';
+import 'package:eazy_gate_lite/screens/visitor/printPage.dart';
 import 'package:eazy_gate_lite/styles/colors.dart';
 import 'package:eazy_gate_lite/styles/containers.dart';
 import 'package:eazy_gate_lite/styles/text.dart';
@@ -73,9 +73,13 @@ class _PicturePageState extends State<PicturePage> {
       padding: const EdgeInsets.all(8.0),
       child: InkWell(
         onTap: () {
-          Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => HomePage()),
-              (Route<dynamic> route) => false);
+                  Navigator.push(
+          context,
+          MaterialPageRoute<void>(
+            builder: (BuildContext context) => const PrintPage(),
+          ),
+        );
+
         },
         child: Container(
           width: widthScreen * 0.4,
@@ -108,6 +112,7 @@ class _PicturePageState extends State<PicturePage> {
 
   Future<void> _openCamera() async {
     print("_openCamera()");
+    // ignore: invalid_use_of_visible_for_testing_member
     var image = await ImagePicker.platform.pickImage(
         source: ImageSource.camera, maxHeight: 1000.0, maxWidth: 1000.0);
     setState(() {
